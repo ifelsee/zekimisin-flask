@@ -1,0 +1,204 @@
+<!doctype html>
+<html>
+<head>
+	<title>Zeki misin ?</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdn.tailwindcss.com"></script>
+		
+</head>
+<body>
+	<div class="mt-16 grid place-items-center h-32 block ">
+		<h1 class="text-6xl mb-5 " id=""> Zeki Misin ? </h1>
+		<h1 class="text-6xl mb-5 " id="generate_number">000</h1>
+		<div class="custom-number-input h-10 w-32 " id="range">
+		  <label for="custom-input-number" class="w-full text-gray-700 text-sm font-semibold ml-5"> Hane Sayısı
+		  </label>
+		  <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
+		    <button data-action="decrement" class=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none">
+		      <span class="m-auto text-2xl font-thin">−</span>
+		    </button>
+		    <input type="number" class="outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700  outline-none" name="custom-input-number" value="3" id="range_rand"></input>
+		  <button data-action="increment" class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer">
+		    <span class="m-auto text-2xl font-thin">+</span>
+		  </button>
+		</div>
+		</div>
+
+
+
+		<button class="bg-black w-48 rounded-lg font-semibold  h-12 mt-12 text-md text-white hover:bg-white shadow-xl hover:text-black" id="finish-selection"> Kalsın Bu</button>
+
+	</div>
+
+
+		<div id="game-tab"class="hidden mt-[60px] m-[auto] max-w-xl min-h-[500px]  row pt-12   ">
+			<div class="row  h-[68px] relative grid grid-cols-3 ">
+				<input id="guess" type="number" class="left-0 float-left  shadow-xl  h-[65px] text-center text-black  font-semibold outline-none text-4xl" placeholder="0000" name="somename"
+    oninput="javascript: if (this.value.length > $('#range_rand').val()) this.value = this.value.slice(0, this.maxlength);"
+    type = "number"
+     > </input>
+				<button id="guess-btn" class="bg-black h-[65px] shadow-xl w-full text-center col-span-2 text-white font-semibold text-xl hover:bg-white hover:text-black ">Tahmin</button>
+			</div>
+			<div class="mt-4 min-w-full  h-full z-4 relative shadow-2xl min-h-[380px]">
+			<div class="col-span-3 bg-white grid grid-cols-3 divide-x divide-slate-200 ">
+						<p class="text-center  text-slate-400 font-mono font-bold pt-3 h-[50px] text-black border-x-gray-800"> tahmin</p>
+						<p class="text-center  text-slate-400 font-mono font-bold pt-3 h-[50px] text-black border-x-gray-800"> toplam doğru</p>
+						<p class="text-center  text-slate-400 font-mono font-bold pt-3 h-[50px] text-black border-x-gray-800"> doğru yer</p>
+					</div>
+			
+				<div id="result" class="w-full h-full grid grid-cols-3 divide-y divide-slate-200 ">
+
+
+
+				</div>
+			</div>
+
+		</div>
+
+		<div class=" fixed bottom-0 rigth-0 w-full bottom-0 m-auto ml-5 "><p class="font-black italic   ">Arex#2701</p></div>
+
+</body>
+
+<style>
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .custom-number-input input:focus {
+    outline: none !important;
+  }
+
+  .custom-number-input button:focus {
+    outline: none !important;
+  }
+</style>
+
+<script>
+  function ref(value){
+    $("#generate_number").text("0".repeat(value));
+    can_finish_selection = false;
+
+  }
+  function decrement(e) {
+	
+    const btn = e.target.parentNode.parentElement.querySelector(
+      'button[data-action="decrement"]'
+    );
+    const target = btn.nextElementSibling;
+    let value = Number(target.value);
+
+    if(value >2){
+	    value--;
+	    target.value = value;
+	    ref(value);
+    }
+  }
+
+  function increment(e) {
+    const btn = e.target.parentNode.parentElement.querySelector(
+      'button[data-action="decrement"]'
+    );
+    const target = btn.nextElementSibling;
+    let value = Number(target.value);
+    value++;
+    target.value = value;
+    ref(value);
+  }
+
+  const decrementButtons = document.querySelectorAll(
+    `button[data-action="decrement"]`
+  );
+
+  const incrementButtons = document.querySelectorAll(
+    `button[data-action="increment"]`
+  );
+
+  decrementButtons.forEach(btn => {
+    btn.addEventListener("click", decrement);
+  });
+
+  incrementButtons.forEach(btn => {
+    btn.addEventListener("click", increment);
+  });
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+	$(document).ready(function(){
+		can_finish_selection = false;
+		var test1  = ' <div class="mt-1 col-span-3 bg-white grid grid-cols-3 divide-b divide-slate-200   text-center  text-black font-mono font-bold "> <p class="pt-3 h-[50px]  border-x-gray-800" > 5000</p> <p class="pt-3 h-[50px]  border-x-gray-800"> 1</p><p class="pt-3 h-[50px]  border-x-gray-800"> 3</p></div>'
+
+		$("#generate_number").click(function(){
+			$.ajax({
+					type: "get",
+					url: "",
+					contentType: 'application/json',
+					data: {
+							"game":0,
+							"original_number" : $("#generate_number").text(),
+							"range_rand" : $("#range_rand").val()
+						},
+					success: function(response){
+						$("#generate_number").text(response.rand);
+						//$("#generate_number").off("click");
+						can_finish_selection = true;
+
+
+
+
+					},
+
+				},
+				
+				)
+			});
+		$("#finish-selection").click(function(){
+			if (can_finish_selection == true){ 
+				$("#range").hide();
+				$(this).hide();
+				$("#generate_number").addClass("text-[6rem]");
+				$("#generate_number").off("click");
+				$("#game-tab").show();
+				}
+			});
+		$("#guess").bind("enterKey",function(e){
+				console.log($("#guess").val());
+				$.ajax({
+						type: "get",
+						url: "",
+						contentType: "application/json",
+						data: {
+								"game":1,
+								"original_number" : $("#generate_number").text(),
+								"guess" : $("#guess").val()
+							
+							},
+						success: function(response){
+								$("#guess").val("");
+								var result ="".concat( ' <div class="mt-1 col-span-3 bg-white grid grid-cols-3 divide-b divide-slate-200   text-center  text-black font-mono font-bold "> <p class="pt-3 h-[50px]  border-x-gray-800" >',response.gues_num,'</p> <p class="pt-3 h-[50px]  border-x-gray-800">',response.true_num,'</p><p class="pt-3 h-[50px]  border-x-gray-800">',response.true_loc,'</p></div>')
+
+
+								$("#result").prepend(result);
+	
+							}
+					})
+			});
+
+		$("#guess").keyup(function(e){
+				if(e.keyCode == 13){
+					$(this).trigger("enterKey");
+					}
+			});
+		$("#guess-btn").click(function(){
+			$("#guess").trigger("enterKey");
+			});
+		});
+</script>
+</html>
+
+
+
+
